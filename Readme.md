@@ -23,6 +23,7 @@
 
 ### OTP
 Para hacer uso de inicio de sesión con OTP se decidio extraer el codigo de verificación que llega al correo electronico, para realizar esto se hizo uso del GMAIL APi de Google, lo que nos permitio obetener mediante llamada Rest el correo con la respectiva clave OTP.
+![image](https://user-images.githubusercontent.com/51218499/221449603-b5960ac2-62e0-423e-9de7-dbca9edce21f.png)
 
 #### Configuración de GMAIL API Google
 Como prerrequisito es necesario tener una cuenta de Google.
@@ -71,6 +72,7 @@ Feature: Compra con efectivo en KFC Ecuador
         Then realizara el pago con efectivo de manera exitosa
 ```
 
+![image](https://user-images.githubusercontent.com/51218499/221449540-81a3a7ae-fa3a-4d71-b27f-7116fc80bcad.png)
 En el cual se llego hasta el ultimo punto antes de la compra para no ocasionar inconvenientes a la tienda 
 
 ## Ejecución
