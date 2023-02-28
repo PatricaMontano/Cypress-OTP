@@ -2,7 +2,7 @@ import { defineConfig } from "cypress";
 import * as webpack from "@cypress/webpack-preprocessor";
 import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
 const dotenvPlugin = require("cypress-dotenv");
-import {readMail} from "./controller";
+import {readMailOTP, readMailConfirmation} from "./controller";
 
 
 async function setupNodeEvents(
@@ -46,8 +46,13 @@ async function setupNodeEvents(
     })
   ),
     on("task", {
-      async getEmail() {
-        return await readMail();
+      async readOTP() {
+        return await readMailOTP();
+      },
+    });
+    on("task", {
+      async readEmailConfirmation() {
+        return await readMailConfirmation();
       },
     });
 

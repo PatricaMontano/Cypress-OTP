@@ -20,6 +20,7 @@
 
 - Se usó la opción chromeWebSecurity con la opción false para deshabilitar los errores por Cross origin.
 - Obtener las credenciales de API Gmail de la consola de Google y guardarlas en el archivo .env del proyecto
+- Tener creada una cuenta con el correo en la plataforma en la cual se va a usar OTP
 
 ### OTP
 Para hacer uso de inicio de sesión con OTP se decidio extraer el codigo de verificación que llega al correo electronico, para realizar esto se hizo uso del GMAIL APi de Google, lo que nos permitio obetener mediante llamada Rest el correo con la respectiva clave OTP.
@@ -59,8 +60,13 @@ Para hacer uso del metodo se dede llamar desde el test
 ```sh
 cy.task("Nombre del metodo creado")
 ```
+### Leer Correo de Confirmación
+Para leer el correo de confirmación se hizo uso de API de GMAIL
+![image](https://user-images.githubusercontent.com/51218499/221749059-101aee76-0693-4e4c-8a5e-12c000a0c207.png)
+### Errores en Consulta
+En el caso que no se encuentre los correos correspondientes de OTP o Confirmación de Compra se lanzara una **excepción** que interrumpira el flujo de Cypress
 
-### Caso de Prueba
+### Caso de Prueba - Producción
 
 Para demostrar la funcionalidad se hizo el siguiente caso de uso:
 
@@ -74,6 +80,30 @@ Feature: Compra con efectivo en KFC Ecuador
 
 ![image](https://user-images.githubusercontent.com/51218499/221449540-81a3a7ae-fa3a-4d71-b27f-7116fc80bcad.png)
 En el cual se llego hasta el ultimo punto antes de la compra para no ocasionar inconvenientes a la tienda 
+
+
+### Caso de Prueba Mobile - Producción
+
+Se realizo una prueba en modo **Mobile**  el flujo llego un punto antes de realizar la compra para no causar inconvenientes a la tienda en donde se realiza la prueba
+
+```
+Scenario: Compra exitosa
+        Given Entrar en mobile en "https://www.kfc.com.ec/"
+        When Seleccionar el producto deseado
+        Then Realizar el pago con efectivo de manera exitosa
+```
+![image](https://user-images.githubusercontent.com/51218499/221748833-6e27277e-6eb9-4a54-b795-512a61d1cdc1.png)
+### Caso de Prueba - Stagging
+Se hizo un caso se prueba en Stagging KFC Ecuador donde se termino el flujo termina hasta finalizar la compra y recibir el correo de Confirmación.
+```
+Scenario: Compra exitosa en stagging
+        Given Ingreso a la plataforma "https://staging-kfc-ec.deuna.io/" e 
+        introduzco mi dirección
+        When selecciono el producto a comprar
+        And ingreso a mi cuenta de DEUNA
+        Then realizo el pago con efectivo de manera exitosa
+```
+
 
 ## Ejecución
 Para ejecutar el proyecto ejecute los siguientes comandos:

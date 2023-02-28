@@ -50,7 +50,7 @@ Then('realizara el pago con efectivo de manera exitosa', () => {
     .click();
 
     cy.wait(25000);
-    cy.task("getEmail").then((result:any) => {
+    cy.task("readOTP").then((result:any) => {
         cy.iframe('.zoid-visible').find('[data-testid="test-otp-0"]').type(result.charAt(0))
         cy.iframe('.zoid-visible').find('[data-testid="test-otp-1"]').type(result.charAt(1))
         cy.iframe('.zoid-visible').find('[data-testid="test-otp-2"]').type(result.charAt(2))
